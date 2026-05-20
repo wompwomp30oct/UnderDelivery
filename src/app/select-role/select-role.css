@@ -1,0 +1,117 @@
+.role-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--navbar-height));
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+}
+
+.role-header {
+  margin-bottom: var(--space-3xl);
+  text-align: center;
+}
+
+.role-header h1 {
+  font-size: var(--text-4xl);
+  margin-bottom: var(--space-sm);
+}
+
+.role-header p {
+  color: var(--text-secondary);
+  font-size: var(--text-lg);
+}
+
+.role-admin-note {
+  margin-top: var(--space-sm);
+  font-size: var(--text-sm);
+}
+
+.role-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-2xl);
+  width: 100%;
+  max-width: 900px;
+}
+
+.role-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2xl);
+  text-decoration: none;
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s var(--transition-spring) backwards;
+}
+
+.order-card::before,
+.deliver-card::before,
+.admin-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+
+.order-card::before {
+  background: var(--brand-primary);
+}
+
+.deliver-card::before {
+  background: var(--brand-secondary);
+}
+
+.admin-card::before {
+  background: var(--brand-accent);
+}
+
+.role-icon {
+  font-size: 4rem;
+  margin-bottom: var(--space-lg);
+  transition: transform var(--transition-base);
+}
+
+.role-card h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-sm);
+}
+
+.role-card p {
+  color: var(--text-secondary);
+  flex-grow: 1;
+  margin-bottom: var(--space-xl);
+  line-height: 1.7;
+}
+
+.role-action {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: gap var(--transition-fast);
+}
+
+.order-card .role-action {
+  color: var(--brand-primary);
+}
+
+.deliver-card .role-action {
+  color: var(--brand-secondary);
+}
+
+.admin-card .role-action {
+  color: var(--brand-accent);
+}
+
+.role-card:hover .role-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.role-card:hover .role-action {
+  gap: var(--space-md);
+}

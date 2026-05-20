@@ -1,0 +1,97 @@
+.deliver-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.deliver-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.delivery-metrics {
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+.deliver-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.deliver-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.deliver-card {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.deliver-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.deliver-time {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.deliver-fee {
+  font-weight: 700;
+  color: var(--brand-primary-light);
+}
+
+.deliver-card-body {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.deliver-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+}
+
+.deliver-row strong {
+  color: var(--text-primary);
+}
+
+.deliver-status {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.deliver-timer {
+  font-weight: 600;
+  color: var(--brand-primary-light);
+}
+
+.deliver-timer.expired {
+  color: var(--status-error);
+}
+
+.deliver-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}

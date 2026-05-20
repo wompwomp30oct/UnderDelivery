@@ -1,0 +1,212 @@
+.admin-menu-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.admin-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.admin-menu-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.admin-menu-grid {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: minmax(280px, 1fr) minmax(320px, 1fr);
+}
+
+.admin-menu-form,
+.admin-menu-list {
+  padding: var(--space-xl);
+}
+
+.admin-menu-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.list-controls {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.list-search {
+  min-width: 180px;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+}
+
+.list-search:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 2px var(--brand-primary-glow);
+}
+
+.list-count {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.clear-search {
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  transition: all var(--transition-base);
+}
+
+.clear-search:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary-light);
+}
+
+.sort-toggle {
+  display: inline-flex;
+  gap: var(--space-xs);
+  align-items: center;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.sort-toggle button {
+  background: transparent;
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  transition: all var(--transition-base);
+}
+
+.sort-toggle button.active {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary-light);
+}
+
+.menu-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.form-toggle-row {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.form-warning {
+  font-size: var(--text-sm);
+  color: var(--status-warning);
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.menu-item-card {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.menu-item-card h3 {
+  font-size: var(--text-base);
+  margin-bottom: var(--space-xs);
+}
+
+.menu-item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.menu-item-tag {
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  font-size: var(--text-sm);
+}
+
+.menu-item-pill {
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  border: 1px solid transparent;
+}
+
+.menu-item-pill.veg {
+  color: var(--status-success);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.menu-item-pill.non-veg {
+  color: var(--status-error);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.status-available {
+  color: var(--status-success);
+  font-weight: 600;
+}
+
+.status-unavailable {
+  color: var(--status-error);
+  font-weight: 600;
+}
+
+.menu-item-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 960px) {
+  .admin-menu-grid {
+    grid-template-columns: 1fr;
+  }
+}

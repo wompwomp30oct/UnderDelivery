@@ -1,0 +1,107 @@
+.orders-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.orders-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.orders-grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.order-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.order-card {
+  padding: var(--space-xl);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.order-card-link:hover .order-card {
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.order-card-header h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.order-time {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+}
+
+.status-blue { color: var(--status-info); }
+.status-yellow { color: var(--status-warning); }
+.status-green { color: var(--status-success); }
+.status-orange { color: var(--brand-primary); }
+.status-purple { color: var(--brand-secondary); }
+
+.order-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  color: var(--text-secondary);
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-more {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.order-total {
+  color: var(--brand-primary-light);
+}
+
+@media (max-width: 640px) {
+  .order-card-header {
+    flex-direction: column;
+  }
+}
