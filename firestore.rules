@@ -2,33 +2,42 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Helper function to check if the current user is an admin
+    // This fetches the user's document from the users collection and checks the role
+    function isAdmin() {
+      return request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
     // Default deny
     match /{document=**} {
       allow read, write: if false;
     }
 
+    // Users can read/write their own profiles, admins can read/write all
+    match /users/{userId} {
+      allow read, write: if request.auth != null && (request.auth.uid == userId || isAdmin());
+    }
+
     // Menu items are public read, admin write
-    match /menu/{itemId} {
+    match /menuItems/{itemId} {
       allow read: if true;
-      allow write: if request.auth != null && request.auth.token.admin == true;
+      allow write: if isAdmin();
     }
 
     // Orders: users can read their own, admins can read/write all
     match /orders/{orderId} {
-      allow read: if request.auth != null
-        && (request.auth.token.admin == true || request.auth.uid == resource.data.customerId);
-      allow write: if request.auth != null && request.auth.token.admin == true;
+      allow read: if request.auth != null && (request.auth.uid == resource.data.customerId || isAdmin());
+      allow write: if isAdmin();
     }
 
     // Order updates (status history, etc.) locked to admins
     match /orderUpdates/{updateId} {
-      allow read: if request.auth != null && request.auth.token.admin == true;
-      allow write: if request.auth != null && request.auth.token.admin == true;
+      allow read, write: if isAdmin();
     }
 
     // Delivery assignments restricted to admins
     match /deliveries/{deliveryId} {
-      allow read, write: if request.auth != null && request.auth.token.admin == true;
+      allow read, write: if isAdmin();
     }
   }
 }

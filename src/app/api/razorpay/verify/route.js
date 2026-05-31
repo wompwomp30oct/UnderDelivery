@@ -8,6 +8,7 @@ import { getRazorpayClient } from '@/lib/razorpay';
 const generateOrderNumber = () => Math.floor(1000 + Math.random() * 9000);
 
 export async function POST(request) {
+  let body;
   try {
     if (!hasAdminConfig()) {
       return NextResponse.json({ error: 'Missing server configuration' }, { status: 500 });
@@ -22,7 +23,7 @@ export async function POST(request) {
     const adminAuth = getAdminAuth();
     const decoded = await adminAuth.verifyIdToken(token);
 
-    const body = await request.json();
+    body = await request.json();
     const paymentId = body?.razorpay_payment_id;
     const orderId = body?.razorpay_order_id;
     const signature = body?.razorpay_signature;
@@ -36,24 +37,27 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Unauthorized customer' }, { status: 403 });
     }
 
-    const secret = process.env.RAZORPAY_KEY_SECRET;
-    if (!secret) {
-      return NextResponse.json({ error: 'Missing Razorpay secret' }, { status: 500 });
-    }
+    const enableRazorpay = process.env.NEXT_PUBLIC_ENABLE_RAZORPAY === 'true';
+    if (enableRazorpay) {
+      const secret = process.env.RAZORPAY_KEY_SECRET;
+      if (!secret) {
+        return NextResponse.json({ error: 'Missing Razorpay secret' }, { status: 500 });
+      }
 
-    const payload = `${orderId}|${paymentId}`;
-    const expectedSignature = crypto
-      .createHmac('sha256', secret)
-      .update(payload)
-      .digest('hex');
+      const payload = `${orderId}|${paymentId}`;
+      const expectedSignature = crypto
+        .createHmac('sha256', secret)
+        .update(payload)
+        .digest('hex');
 
-    const signatureValid = crypto.timingSafeEqual(
-      Buffer.from(expectedSignature),
-      Buffer.from(signature)
-    );
+      const signatureValid = crypto.timingSafeEqual(
+        Buffer.from(expectedSignature),
+        Buffer.from(signature)
+      );
 
-    if (!signatureValid) {
-      return NextResponse.json({ error: 'Invalid payment signature' }, { status: 400 });
+      if (!signatureValid) {
+        return NextResponse.json({ error: 'Invalid payment signature' }, { status: 400 });
+      }
     }
 
     const cafeStatus = getCafeStatus();

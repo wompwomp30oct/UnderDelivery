@@ -171,16 +171,26 @@ export default function CheckoutPage() {
         },
       };
 
-      if (!window?.Razorpay) {
-        throw new Error('Razorpay SDK not loaded');
-      }
-
-      const rzp1 = new window.Razorpay(options);
-      rzp1.on('payment.failed', function () {
-        addToast('Payment Failed', 'error');
-        setLoading(false);
-      });
-      rzp1.open();
+      if (process.env.NEXT_PUBLIC_ENABLE_RAZORPAY === 'true') {
+  if (!window?.Razorpay) {
+    throw new Error('Razorpay SDK not loaded');
+  }
+  const rzp1 = new window.Razorpay(options);
+  rzp1.on('payment.failed', function () {
+    addToast('Payment Failed', 'error');
+    setLoading(false);
+  });
+  rzp1.open();
+} else {
+  // Mock flow: simulate successful payment
+  const mockResponse = {
+    razorpay_payment_id: 'mock_payment_' + Date.now(),
+    razorpay_order_id: createPayload.id,
+    razorpay_signature: 'mock_signature',
+  };
+  // Directly invoke the handler to mimic Razorpay callback
+  await options.handler(mockResponse);
+}
     } catch (error) {
       addToast(error?.message || 'Unable to start payment', 'error');
       setLoading(false);

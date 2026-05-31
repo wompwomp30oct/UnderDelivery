@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { Suspense, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button';
 import './order-confirmed.css';
@@ -14,7 +14,7 @@ const STATUS_STEPS = [
   { key: 'delivered', label: 'Delivered', emoji: '🎉' },
 ];
 
-export default function OrderConfirmedPage() {
+function OrderConfirmedContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -79,5 +79,13 @@ export default function OrderConfirmedPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function OrderConfirmedPage() {
+  return (
+    <Suspense fallback={<div className="container py-8 text-center">Loading confirmation...</div>}>
+      <OrderConfirmedContent />
+    </Suspense>
   );
 }
