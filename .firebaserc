@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "placeholder-firebase-proj"
-  }
+    "default": "underdelivery-proj"
+  },
+  "targets": {},
+  "etags": {}
 }
